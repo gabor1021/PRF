@@ -1,0 +1,27 @@
+<div class="login-container">
+    <form class="login-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <input formControlName="email" type="email" placeholder="New email" [ngClass]="{'invalid-input': profileForm.get('email')?.errors}" />
+        <div *ngIf="profileForm.get('email')?.invalid && (profileForm.get('email')?.dirty || profileForm.get('email')?.touched)">
+            <p *ngIf="profileForm.get('email')?.errors && profileForm.get('email')?.errors!['email']">Please enter a valid email.</p>
+        </div>
+        <input formControlName="password" type="password" placeholder="New password" [ngClass]="{'invalid-input': profileForm.get('password')?.errors}" />
+        <div *ngIf="profileForm.get('password')?.invalid && (profileForm.get('password')?.dirty || profileForm.get('password')?.touched)">
+            <p *ngIf="profileForm.get('password')?.errors && profileForm.get('password')?.errors!['minlength']">Password must be at least 6 characters.</p>
+        </div>
+        <div *ngIf="profileForm.get('password')?.value">
+        <input formControlName="confirmPassword" type="password" placeholder="Confirm new password" [ngClass]="{'invalid-input': profileForm.get('confirmPassword')?.errors}" />
+        <div *ngIf="profileForm.get('confirmPassword')?.invalid && (profileForm.get('confirmPassword')?.dirty || profileForm.get('confirmPassword')?.touched)">
+            <p *ngIf="profileForm.get('confirmPassword')?.errors && profileForm.get('confirmPassword')?.errors!['mustMatch']">Passwords must match.</p>
+        </div>
+        </div>
+        <input formControlName="name" type="text" placeholder="New username" />
+        <input formControlName="phone" type="text" placeholder="New phone number" />
+        
+        <div class="buttons">
+            <button type="submit">Update</button>
+        </div>
+        <div class="buttons">
+            <button type="reset" (click)="logout()">Logout</button>
+        </div>
+    </form>
+</div>

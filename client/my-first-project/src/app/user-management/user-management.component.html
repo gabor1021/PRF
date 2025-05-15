@@ -1,0 +1,34 @@
+<div class="login-container">
+    <form class="login-form" [formGroup]="managementForm" (ngSubmit)="onSubmit()">
+            <input formControlName="id" type="text" placeholder="User ID" />
+            <div class="buttons">
+                <button type="submit">Delete</button>
+            </div>
+    </form>
+</div>
+
+<div class="table-container" *ngIf="users && users.length; else noUsersTemplate">
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Phone number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.email}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #noUsersTemplate>
+    <p>No users available.</p>
+</ng-template>
+
+<div class="buttons">
+    <button type="reset" (click)="logout()">Logout</button>
+</div>

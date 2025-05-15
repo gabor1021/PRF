@@ -1,0 +1,28 @@
+<div class="table-container" *ngIf="dates && dates.length; else unavailableTemplate">
+    <table mat-table [dataSource]="dates">
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <th mat-cell *matCellDef="let element">{{element.date}}</th>
+        </ng-container>
+        
+        <ng-container matColumnDef="guestnum">
+            <th mat-header-cell *matHeaderCellDef>Available</th>
+            <th mat-cell *matCellDef="let element">{{element.guestnum}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="reserve">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <th mat-cell *matCellDef="let element"><mat-icon fontIcon="add_box" (click)="newRes(element._id)"></mat-icon></th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="cols"></tr>
+        <tr mat-row *matRowDef="let row; columns: cols"></tr>
+    </table>
+</div>
+<ng-template #unavailableTemplate>
+    <p>Service unavailable.</p>
+</ng-template>
+
+<div class="buttons">
+    <button type="reset" (click)="logout()">Logout</button>
+</div>
