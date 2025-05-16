@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
       password: ['', [Validators.minLength(6) || Validators.maxLength(0)]],
       confirmPassword: [''],
       name: [''],
-      phone: [''],
+      phone: ['', [Validators.pattern('[0-9]*')]],
     }, {
       validator: this.mustMatch('password', 'confirmPassword')
     });

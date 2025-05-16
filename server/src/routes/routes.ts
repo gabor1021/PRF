@@ -4,7 +4,8 @@ import { User, IUser } from '../model/User';
 import { Rdate } from '../model/Rdate';
 import { Gdate } from '../model/Gdate';
 import bcrypt from 'bcrypt';
-import { isAdmin } from '../auth/auth';
+import { isAdmin, isAdmin2 } from '../auth/auth';
+import { Pref } from '../model/Pref';
 
 export const configureRoutes = (passport: PassportStatic, router: Router): Router => {
 
@@ -127,10 +128,27 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         }
     });
 
+    router.get('/checkAdmin', isAdmin2, (req: Request, res: Response) => {});
+
     router.get('/getAllRdates', (req: Request, res: Response) => {
         if(req.isAuthenticated()){
             const query = Rdate.find();
             query.then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error');
+            })
+        }else{
+            res.status(500).send('User is not logged in');
+        }
+    });
+
+    router.get('/getHist', (req: Request, res: Response) => {
+        if(req.isAuthenticated()){
+            const query = Gdate.find({guest: req.user});
+            query.then(data => {
+                console.log(data);
                 res.status(200).send(data);
             }).catch(error => {
                 console.log(error);
@@ -202,6 +220,46 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         if (req.isAuthenticated()) {
             const id = req.params['id'];
             Rdate.findByIdAndDelete(id).then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                res.status(500).send(error);
+            })
+        }else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.post('/addPref', (req: Request, res: Response) => {
+        const spec_request = req.body.spec_request;
+        const description = req.body.description;
+        
+        const pref = new Pref({spec_request,description});
+        pref.save().then(data => {
+            res.status(200).send(data);
+        }).catch(error => {
+            res.status(500).send(error);
+        })
+    });
+
+    router.get('/getAllPrefs', (req: Request, res: Response) => {
+        if(req.isAuthenticated()){
+            const query = Pref.find();
+            query.then(data => {
+                console.log(data);
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error');
+            })
+        }else{
+            res.status(500).send('User is not logged in');
+        }
+    });
+
+    router.delete('/deletePref/:id', isAdmin, (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const id = req.params['id'];
+            Pref.findByIdAndDelete(id).then(data => {
                 res.status(200).send(data);
             }).catch(error => {
                 res.status(500).send(error);

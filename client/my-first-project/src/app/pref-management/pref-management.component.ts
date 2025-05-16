@@ -1,46 +1,46 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Rdate } from '../shared/model/Rdate';
-import { RdateService } from '../shared/services/rdate.service';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { DeleteComponent } from '../shared/components/delete/delete.component';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { DialogModule } from '@angular/cdk/dialog';
+import { Pref } from '../shared/model/Pref';
+import { PrefService } from '../shared/services/pref.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteComponent } from '../shared/components/delete/delete.component';
 
 @Component({
-  selector: 'app-date-management',
+  selector: 'app-pref-management',
   standalone: true,
   imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatSnackBarModule,DialogModule],
-  templateUrl: './date-management.component.html',
-  styleUrl: './date-management.component.scss'
+  templateUrl: './pref-management.component.html',
+  styleUrl: './pref-management.component.scss'
 })
 
-export class DateManagementComponent implements OnInit{
-  dates!: Rdate[];
+export class PrefManagementComponent implements OnInit{
+  prefs!: Pref[];
   managementForm!: FormGroup;
-  cols = ['date', 'guestnum','delete'];
+  cols = ['spec_request', 'description','delete'];
   constructor(
     private formBuilder: FormBuilder,
-    private rdateService: RdateService,
+    private prefService: PrefService,
     private authService: AuthService,
-    private snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
     private router: Router  
   ) { }
   
   ngOnInit() {
     this.managementForm = this.formBuilder.group({
-          date: [''],
-          guestnum: ['',[Validators.pattern('[0-9]*')]]
+          spec_request: [''],
+          description: ['']
     });
-    this.rdateService.getAll().subscribe({
+    this.prefService.getAll().subscribe({
       next: (data) => {
-        this.dates = data;
+        this.prefs = data;
       }, error: (err) => {
         console.log(err);
       }
@@ -49,8 +49,7 @@ export class DateManagementComponent implements OnInit{
 
   onSubmit() {
     if (this.managementForm.valid) {
-      console.log('Form data: ',this.managementForm.value);
-      this.rdateService.addDate(this.managementForm.value).subscribe({
+      this.prefService.addPref(this.managementForm.value).subscribe({
         next: (data) => {
           console.log(data);
         }, error: (err) => {
@@ -73,38 +72,20 @@ export class DateManagementComponent implements OnInit{
     })
   }
 
-  genDates(){
-    for(let hour = 16; hour < 20; hour++){
-      const current_date = new Date();
-      const year = current_date.getFullYear();
-      const month = ("0" + (current_date.getMonth() + 1)).slice(-2);
-      const day = ("0" + current_date.getDate()).slice(-2);
-      const date = year+'.'+month+'.'+day+'.'+hour.toString();
-      console.log(date);
-      this.rdateService.genDates(date).subscribe({
-          next: (data) => {
-            console.log(data);
-          }, error: (err) => {
-            console.log(err);
-          }
-        });
-    }
-  }
-
-  deleteDate(id: string){
+  deletePref(id: string){
     const dialogRef = this.dialog.open(DeleteComponent);
     dialogRef.afterClosed().subscribe({
       next: (data) => {
         if(data){
-            this.rdateService.deleteDate(id).subscribe({
+            this.prefService.deletePref(id).subscribe({
             next: (data) => {
               console.log(data);
-              this.dates = [...this.dates];
-              this.openSnackBar("Successfully deleted a date.",2000);
+              this.prefs = [...this.prefs];
+              this.openSnackBar("Successfully deleted a service.",2000);
             }, error: (err) => {
               console.log(err);
             }
-        });
+          });
         }
       }
     })

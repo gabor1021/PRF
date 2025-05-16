@@ -22,7 +22,6 @@ export class RdateService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    console.log(rdate.date,rdate.guestnum);
     return this.http.post('http://localhost:5000/app/addDate',body, {headers: headers, withCredentials: true});
   }
 

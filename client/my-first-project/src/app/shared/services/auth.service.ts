@@ -45,4 +45,9 @@ export class AuthService {
   checkAuth() {
     return this.http.get<boolean>('http://localhost:5000/app/checkAuth', {withCredentials: true});
   }
+
+  
+  checkAdmin() {
+    return this.http.get<boolean>('http://localhost:5000/app/checkAdmin', {withCredentials: true});
+  }
 }

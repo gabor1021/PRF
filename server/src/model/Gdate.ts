@@ -2,8 +2,8 @@ import mongoose, { Document, Model, Schema } from 'mongoose';
 
 export interface IGdate extends Document {
     date: string;
-    preference: string;
-    guest: mongoose.Schema.Types.ObjectId;
+    preference: String;
+    guest: Schema.Types.ObjectId;
 }
 
 const GdateSchema: Schema<IGdate> = new mongoose.Schema({
