@@ -11,11 +11,12 @@ import { Pref } from '../shared/model/Pref';
 import { PrefService } from '../shared/services/pref.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from '../shared/components/delete/delete.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-pref-management',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatSnackBarModule,DialogModule],
+  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatSnackBarModule,DialogModule,MatToolbarModule],
   templateUrl: './pref-management.component.html',
   styleUrl: './pref-management.component.scss'
 })
@@ -23,7 +24,7 @@ import { DeleteComponent } from '../shared/components/delete/delete.component';
 export class PrefManagementComponent implements OnInit{
   prefs!: Pref[];
   managementForm!: FormGroup;
-  cols = ['spec_request', 'description','delete'];
+  cols = ['spec_request','delete'];
   constructor(
     private formBuilder: FormBuilder,
     private prefService: PrefService,
@@ -35,8 +36,7 @@ export class PrefManagementComponent implements OnInit{
   
   ngOnInit() {
     this.managementForm = this.formBuilder.group({
-          spec_request: [''],
-          description: ['']
+          spec_request: ['']
     });
     this.prefService.getAll().subscribe({
       next: (data) => {

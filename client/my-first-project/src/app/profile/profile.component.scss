@@ -63,3 +63,36 @@
     border-width: 3px !important;
     background-color: #ffdddd;
 }
+
+//toolbar
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+mat-toolbar{
+    background-color: #3d3d3d;
+    border-bottom: 2px solid black;
+    position: fixed;
+    padding: 0;
+    
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.toolbar-table{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    color:#ffffff;
+    text-decoration: none;
+    display: block;
+    margin: 0;
+}
+a:hover{
+    color: #a0a0a0;
+}

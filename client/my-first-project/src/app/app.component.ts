@@ -9,6 +9,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { DateManagementComponent } from './date-management/date-management.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { PrefManagementComponent } from './pref-management/pref-management.component';
+import { ResManagementComponent } from './res-management/res-management.component';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ import { PrefManagementComponent } from './pref-management/pref-management.compo
     UserManagementComponent,
     DateManagementComponent,
     ReservationComponent,
-    PrefManagementComponent
+    PrefManagementComponent,
+    ResManagementComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

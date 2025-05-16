@@ -1,0 +1,10 @@
+<h2>Update number of guests</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="selectedVal"/>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button [mat-dialog-close]="selectedVal" >Yes</button>
+    <button mat-flat-button (click)="back()">Back</button>
+</mat-dialog-actions>

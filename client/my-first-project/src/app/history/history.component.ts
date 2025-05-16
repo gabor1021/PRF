@@ -29,7 +29,7 @@ export class HistoryComponent implements OnInit{
   ) { }
   
   ngOnInit() {
-    this.gdateService.getAll().subscribe({
+    this.gdateService.getHist().subscribe({
       next: (data) => {
         console.log(data);
         this.dates = data;

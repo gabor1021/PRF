@@ -1,3 +1,16 @@
+<mat-toolbar>
+    <span>Restaurant name</span>
+    <span class="fill-space"></span>
+    <span>
+        <table class="toolbar-table">
+            <tr>
+                <td class="toolbar-td"><a href="profile">Profile</a></td>
+                <td class="toolbar-td"><a href="reservation">Reservation</a></td>
+                <td class="toolbar-td"><a href="history">History</a></td>
+            </tr>
+        </table>
+    </span>
+</mat-toolbar>
 <div class="login-container">
     <form class="login-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <input formControlName="email" type="email" placeholder="New email" [ngClass]="{'invalid-input': profileForm.get('email')?.errors}" />

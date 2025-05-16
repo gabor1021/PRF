@@ -1,0 +1,17 @@
+<h2>Update reservation</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Date (yyyy.mm.dd.hh)" [(ngModel)]="selectedDate"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Choose preferences</mat-label>
+        <mat-select multiple [(value)]="selectedPref">
+            <mat-option *ngFor="let pref of prefs" [value]="pref.spec_request"> {{pref.spec_request}} </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <p>{{selectedPref}}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button [mat-dialog-close]="{date: selectedDate,pref: selectedPref}">Yes</button>
+    <button mat-flat-button (click)="back()">Back</button>
+</mat-dialog-actions>

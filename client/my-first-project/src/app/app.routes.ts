@@ -12,5 +12,6 @@ export const routes: Routes = [
     { path: 'user-management', loadComponent: () => import('./user-management/user-management.component').then((c) => c.UserManagementComponent), canActivate: [adminGuard] },
     { path: 'date-management', loadComponent: () => import('./date-management/date-management.component').then((c) => c.DateManagementComponent), canActivate: [adminGuard] },
     { path: 'pref-management', loadComponent: () => import('./pref-management/pref-management.component').then((c) => c.PrefManagementComponent), canActivate: [adminGuard] },
+    { path: 'res-management', loadComponent: () => import('./res-management/res-management.component').then((c) => c.ResManagementComponent), canActivate: [adminGuard] },
     { path: '**', redirectTo: 'login' }
 ];

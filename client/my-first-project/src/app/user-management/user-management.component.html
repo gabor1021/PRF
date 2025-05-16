@@ -1,28 +1,27 @@
-<div class="login-container">
-    <form class="login-form" [formGroup]="managementForm" (ngSubmit)="onSubmit()">
-            <input formControlName="id" type="text" placeholder="User ID" />
-            <div class="buttons">
-                <button type="submit">Delete</button>
-            </div>
-    </form>
-</div>
-
 <div class="table-container" *ngIf="users && users.length; else noUsersTemplate">
-    <table>
-        <thead>
-            <tr>
-                <th>Email</th>
-                <th>Name</th>
-                <th>Phone number</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <td>{{user.email}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.phone}}</td>
-            </tr>
-        </tbody>
+    <table mat-table [dataSource]="users">
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <th mat-cell *matCellDef="let element">{{element.email}}</th>
+        </ng-container>
+        
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Username</th>
+            <th mat-cell *matCellDef="let element">{{element.name}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Phone number</th>
+            <th mat-cell *matCellDef="let element">{{element.phone}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <th mat-cell *matCellDef="let element"><mat-icon fontIcon="delete" (click)="deleteUser(element._id)"></mat-icon></th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="cols"></tr>
+        <tr mat-row *matRowDef="let row; columns: cols"></tr>
     </table>
 </div>
 <ng-template #noUsersTemplate>

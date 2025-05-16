@@ -4,19 +4,19 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { Router } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 // FormsModule, ReactiveFormsModule
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatToolbarModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -88,5 +88,4 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-
 }

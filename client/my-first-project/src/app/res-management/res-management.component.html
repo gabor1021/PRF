@@ -1,16 +1,3 @@
-<div class="login-container">
-    <form class="login-form" [formGroup]="managementForm" (ngSubmit)="onSubmit()">
-        <input formControlName="date" type="text" placeholder="Date" required />
-        <input formControlName="guestnum" type="text" placeholder="Number of guests" />
-        <div class="buttons">
-            <button type="submit">Add</button>
-        </div>
-        <div class="buttons">
-            <button type="" (click)="genDates()">Generate Automatically</button>
-        </div>
-    </form>
-</div>
-
 <div class="table-container" *ngIf="dates && dates.length; else unavailableTemplate">
     <table mat-table [dataSource]="dates">
         <ng-container matColumnDef="date">
@@ -18,9 +5,14 @@
             <th mat-cell *matCellDef="let element">{{element.date}}</th>
         </ng-container>
         
-        <ng-container matColumnDef="guestnum">
-            <th mat-header-cell *matHeaderCellDef>Available</th>
-            <th mat-cell *matCellDef="let element">{{element.guestnum}}</th>
+        <ng-container matColumnDef="preference">
+            <th mat-header-cell *matHeaderCellDef>Preferences</th>
+            <th mat-cell *matCellDef="let element">{{element.preference}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="guest">
+            <th mat-header-cell *matHeaderCellDef>Guest id</th>
+            <th mat-cell *matCellDef="let element">{{element.guest}}</th>
         </ng-container>
 
         <ng-container matColumnDef="delete">
@@ -30,7 +22,7 @@
 
         <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef>Edit</th>
-            <th mat-cell *matCellDef="let element"><mat-icon fontIcon="edit" (click)="changeGuestnum(element._id)"></mat-icon></th>
+            <th mat-cell *matCellDef="let element"><mat-icon fontIcon="edit" (click)="updateDate(element._id)"></mat-icon></th>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="cols"></tr>
@@ -38,7 +30,7 @@
     </table>
 </div>
 <ng-template #unavailableTemplate>
-    <p>No users available.</p>
+    <p>Reservation list empty.</p>
 </ng-template>
 
 <div class="buttons">

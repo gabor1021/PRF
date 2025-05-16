@@ -148,7 +148,20 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         if(req.isAuthenticated()){
             const query = Gdate.find({guest: req.user});
             query.then(data => {
-                console.log(data);
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error');
+            })
+        }else{
+            res.status(500).send('User is not logged in');
+        }
+    });
+
+    router.get('/getAllGdates', (req: Request, res: Response) => {
+        if(req.isAuthenticated()){
+            const query = Gdate.find();
+            query.then(data => {
                 res.status(200).send(data);
             }).catch(error => {
                 console.log(error);
@@ -176,7 +189,6 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
     });
 
     router.post('/genDates', (req: Request, res: Response) => {
-        console.log(req.body.date)
         const rdate = new Rdate({date: req.body.date});
         rdate.save().then(data => {
             res.status(200).send(data);
@@ -189,6 +201,7 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         if (req.isAuthenticated()) {
             const id = req.body.id;
             const user_id = req.user;
+            const pref = req.body.pref;
             const query = Rdate.findById(id);
             query.then(data => {
                 if(data){
@@ -198,7 +211,8 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
                         Rdate.findByIdAndUpdate(id,{ $inc:{guestnum: -1}},{new: true}).catch(error => {
                             res.status(500).send(error);
                         });
-                        const gdate = new Gdate({date: data.date,guest: user_id});
+
+                        const gdate = new Gdate({date: data.date,preference: pref,guest: user_id});
                         gdate.save().then(data =>{
                             res.status(200).send(data);
                         }).catch(error =>{
@@ -229,11 +243,23 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         }
     });
 
+    router.delete('/deleteRes/:id', isAdmin, (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const id = req.params['id'];
+            Gdate.findByIdAndDelete(id).then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                res.status(500).send(error);
+            })
+        }else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
     router.post('/addPref', (req: Request, res: Response) => {
         const spec_request = req.body.spec_request;
-        const description = req.body.description;
         
-        const pref = new Pref({spec_request,description});
+        const pref = new Pref({spec_request});
         pref.save().then(data => {
             res.status(200).send(data);
         }).catch(error => {
@@ -245,7 +271,6 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         if(req.isAuthenticated()){
             const query = Pref.find();
             query.then(data => {
-                console.log(data);
                 res.status(200).send(data);
             }).catch(error => {
                 console.log(error);
@@ -260,6 +285,39 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         if (req.isAuthenticated()) {
             const id = req.params['id'];
             Pref.findByIdAndDelete(id).then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                res.status(500).send(error);
+            })
+        }else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.post('/updateDate', isAdmin, (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const id = req.body.id;
+            const guestnum = req.body.guestnum;
+            Rdate.findByIdAndUpdate(id,{guestnum: guestnum},{new: true}).then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                res.status(500).send(error);
+            })
+        }else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.post('/updateResDate', isAdmin, (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const id = req.body.id;
+            const date = req.body.date;
+            if(date){
+                
+            }
+            const pref = req.body.pref;
+            console.log(pref);
+            Gdate.findByIdAndUpdate(id,{date: date,preference: pref},{new: true}).then(data => {
                 res.status(200).send(data);
             }).catch(error => {
                 res.status(500).send(error);

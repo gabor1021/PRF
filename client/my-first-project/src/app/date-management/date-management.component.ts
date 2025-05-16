@@ -11,6 +11,7 @@ import { DeleteComponent } from '../shared/components/delete/delete.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { DialogModule } from '@angular/cdk/dialog';
+import { UpdateComponent } from '../shared/components/update/update.component';
 
 @Component({
   selector: 'app-date-management',
@@ -23,13 +24,14 @@ import { DialogModule } from '@angular/cdk/dialog';
 export class DateManagementComponent implements OnInit{
   dates!: Rdate[];
   managementForm!: FormGroup;
-  cols = ['date', 'guestnum','delete'];
+  cols = ['date', 'guestnum','delete','edit'];
   constructor(
     private formBuilder: FormBuilder,
     private rdateService: RdateService,
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private updateDialog: MatDialog,
     private router: Router  
   ) { }
   
@@ -101,6 +103,25 @@ export class DateManagementComponent implements OnInit{
               console.log(data);
               this.dates = [...this.dates];
               this.openSnackBar("Successfully deleted a date.",2000);
+            }, error: (err) => {
+              console.log(err);
+            }
+        });
+        }
+      }
+    })
+  }
+
+  changeGuestnum(id: string){
+    const dialogRef = this.updateDialog.open(UpdateComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (data) => {
+        if(data){
+            this.rdateService.updateDate(id,data).subscribe({
+            next: (data) => {
+              console.log(data);
+              this.dates = [...this.dates];
+              this.openSnackBar("Successfully updated a date.",2000);
             }, error: (err) => {
               console.log(err);
             }

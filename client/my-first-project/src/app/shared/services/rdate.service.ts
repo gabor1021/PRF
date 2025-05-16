@@ -25,6 +25,17 @@ export class RdateService {
     return this.http.post('http://localhost:5000/app/addDate',body, {headers: headers, withCredentials: true});
   }
 
+  updateDate(id: string, guestnum: number){
+    const body = new URLSearchParams();
+    body.set('id', id);
+    body.set('guestnum', guestnum.toString());
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    return this.http.post('http://localhost:5000/app/updateDate', body,  {headers: headers, withCredentials: true})
+  }
+
   genDates(date: string){
     const body = new URLSearchParams();
     body.set('date',date)
@@ -35,10 +46,12 @@ export class RdateService {
     return this.http.post('http://localhost:5000/app/genDates', body, {headers: headers, withCredentials: true});
   }
 
-  reserveTable(id: string){
+  reserveTable(id: string, pref: string | undefined){
     const body = new URLSearchParams();
     body.set('id',id);
-
+    if(pref){
+      body.set('pref',pref);
+    }
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
