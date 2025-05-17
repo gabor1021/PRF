@@ -13,11 +13,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Pref } from '../shared/model/Pref';
 import { PrefService } from '../shared/services/pref.service';
+import { NavbarComponent } from "../shared/components/navbar/navbar.component";
 
 @Component({
   selector: 'app-reservation',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatButtonModule,MatSnackBarModule],
+  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatIconModule, MatButtonModule, MatSnackBarModule, NavbarComponent],
   templateUrl: './reservation.component.html',
   styleUrl: './reservation.component.scss'
 })
@@ -70,16 +71,27 @@ export class ReservationComponent implements OnInit{
     dialogRef.afterClosed().subscribe({
       next: (data) => {
         if(data){
-          console.log(data)
-          this.rdateService.reserveTable(id,data).subscribe({
-          next: (data) => {
-            console.log(data);
-            this.dates = [...this.dates];
-            this.openSnackBar("Successfully reserved a table.",2000);
-          }, error: (err) => {
-            console.log(err);
+            if(data!==true){
+            this.rdateService.reserveTable(id,data).subscribe({
+            next: (data) => {
+              console.log(data);
+              this.dates = [...this.dates];
+              this.openSnackBar("Successfully reserved a table.",2000);
+            }, error: (err) => {
+              console.log(err);
+            }
+            });
+          }else{
+            this.rdateService.reserveTable(id,undefined).subscribe({
+            next: (data) => {
+              console.log(data);
+              this.dates = [...this.dates];
+              this.openSnackBar("Successfully reserved a table.",2000);
+            }, error: (err) => {
+              console.log(err);
+            }
+            });
           }
-        });
         }
       }
     })

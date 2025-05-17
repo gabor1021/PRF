@@ -9,9 +9,10 @@ export const routes: Routes = [
     { path: 'profile', loadComponent: () => import('./profile/profile.component').then((c) => c.ProfileComponent), canActivate: [authGuard] },
     { path: 'reservation', loadComponent: () => import('./reservation/reservation.component').then((c) => c.ReservationComponent), canActivate: [authGuard] },
     { path: 'history', loadComponent: () => import('./history/history.component').then((c) => c.HistoryComponent), canActivate: [authGuard] },
-    { path: 'user-management', loadComponent: () => import('./user-management/user-management.component').then((c) => c.UserManagementComponent), canActivate: [adminGuard] },
-    { path: 'date-management', loadComponent: () => import('./date-management/date-management.component').then((c) => c.DateManagementComponent), canActivate: [adminGuard] },
-    { path: 'pref-management', loadComponent: () => import('./pref-management/pref-management.component').then((c) => c.PrefManagementComponent), canActivate: [adminGuard] },
-    { path: 'res-management', loadComponent: () => import('./res-management/res-management.component').then((c) => c.ResManagementComponent), canActivate: [adminGuard] },
+    { path: 'admin', redirectTo: 'admin/user-management' },
+    { path: 'admin/user-management', loadComponent: () => import('./user-management/user-management.component').then((c) => c.UserManagementComponent), canActivate: [adminGuard] },
+    { path: 'admin/date-management', loadComponent: () => import('./date-management/date-management.component').then((c) => c.DateManagementComponent), canActivate: [adminGuard] },
+    { path: 'admin/pref-management', loadComponent: () => import('./pref-management/pref-management.component').then((c) => c.PrefManagementComponent), canActivate: [adminGuard] },
+    { path: 'admin/res-management', loadComponent: () => import('./res-management/res-management.component').then((c) => c.ResManagementComponent), canActivate: [adminGuard] },
     { path: '**', redirectTo: 'login' }
 ];

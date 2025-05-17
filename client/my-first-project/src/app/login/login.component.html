@@ -1,3 +1,5 @@
+<app-title/>
+<!--
 <div class="login-container">
     <form class="login-form" (ngSubmit)="login()">
         <input [(ngModel)]="email" name="email" type="email" placeholder="Email" required />
@@ -8,11 +10,35 @@
         <div class="buttons">
             <button type="button" (click)="navigate('/signup')">Sign Up</button>
         </div>
-        <!-- <div class="buttons">
-            <button type="button" routerLink="/signup">Sign Up</button>
-        </div> -->
         <div *ngIf="errorMessage">
             <p>{{errorMessage}}</p>
         </div>
     </form>
 </div>
+-->
+
+<mat-card class="login-container">
+  <form class="login-form" (ngSubmit)="login()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" name="email" type="email" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="password" name="password" type="password" required />
+    </mat-form-field>
+
+    <div class="buttons">
+      <button mat-flat-button color="primary" type="submit">Login</button>
+    </div>
+
+    <div class="buttons">
+      <button mat-flat-button color="accent" type="button" (click)="navigate('/signup')">Sign Up</button>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      <mat-error>{{ errorMessage }}</mat-error>
+    </div>
+  </form>
+</mat-card>

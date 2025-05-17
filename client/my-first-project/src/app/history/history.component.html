@@ -1,12 +1,13 @@
+<app-navbar/>
 <div class="table-container" *ngIf="dates && dates.length; else noHistTemplate">
     <table mat-table [dataSource]="dates">
         <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Date</th>
             <th mat-cell *matCellDef="let element">{{element.date}}</th>
         </ng-container>
         
         <ng-container matColumnDef="preference">
-            <th mat-header-cell *matHeaderCellDef>Preferences</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Preferences</th>
             <th mat-cell *matCellDef="let element">{{element.preference}}</th>
         </ng-container>
 
@@ -15,7 +16,7 @@
     </table>
 </div>
 <ng-template #noHistTemplate>
-    <p>No history available.</p>
+    <p class="p-white">No history available.</p>
 </ng-template>
 
 <div class="buttons">

@@ -5,11 +5,11 @@
 }
 
 .login-form {
+    background-color: #2a2a2a;
     display: flex;
     flex-direction: column;
     width: 80%;
     max-width: 400px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
     gap: 10px;
@@ -17,7 +17,6 @@
 
 .login-form input {
     padding: 10px;
-    border: 1px solid #ddd;
     border-radius: 5px;
     outline: none;
 }
@@ -48,4 +47,39 @@
 
 .login-form button[type="button"]:hover {
     background-color: rgb(57, 129, 57);
+}
+
+mat-form-field{
+    height: fit-content;
+}
+
+mat-card{
+    background-color: #121212;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.error-message {
+  margin-top: 10px;
+  color: red;
+  text-align: center;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #f5f5f5 inset !important;
+  -webkit-text-fill-color: #000 !important;
 }

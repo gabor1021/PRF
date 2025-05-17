@@ -1,13 +1,20 @@
+<div>
 <h2>Reserve a table?</h2>
 <mat-dialog-content>
-    <mat-form-field>
-        <mat-label>Choose preferences</mat-label>
-        <mat-select multiple [(value)]="selectedPref">
-            <mat-option *ngFor="let pref of prefs" [value]="pref.spec_request"> {{pref.spec_request}} </mat-option>
-        </mat-select>
-    </mat-form-field>
+    <div>
+        <mat-form-field>
+            <mat-label>Choose preferences</mat-label>
+            <mat-select multiple [(value)]="selectedPref">
+                <mat-option *ngFor="let pref of prefs" [value]="pref.spec_request"> {{pref.spec_request}} </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-flat-button [mat-dialog-close]="selectedPref" >Yes</button>
+    <button mat-flat-button *ngIf="selectedPref; else noPref" [mat-dialog-close]="selectedPref">Yes</button>
+    <ng-template #noPref>
+        <button mat-flat-button [mat-dialog-close]="true">Yes</button>
+    </ng-template>
     <button mat-flat-button (click)="back()">Back</button>
 </mat-dialog-actions>
+</div>

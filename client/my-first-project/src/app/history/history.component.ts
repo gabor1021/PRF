@@ -5,16 +5,12 @@ import { GdateService } from '../shared/services/gdate.service';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { DeleteComponent } from '../shared/components/delete/delete.component';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { DialogModule } from '@angular/cdk/dialog';
+import { NavbarComponent } from "../shared/components/navbar/navbar.component";
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule,MatTableModule],
+  imports: [CommonModule, MatTableModule, NavbarComponent],
   templateUrl: './history.component.html',
   styleUrl: './history.component.scss'
 })

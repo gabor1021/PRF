@@ -158,7 +158,7 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         }
     });
 
-    router.get('/getAllGdates', (req: Request, res: Response) => {
+    router.get('/getAllGdates',isAdmin, (req: Request, res: Response) => {
         if(req.isAuthenticated()){
             const query = Gdate.find();
             query.then(data => {
@@ -172,7 +172,8 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         }
     });
 
-    router.post('/addDate', (req: Request, res: Response) => {
+    router.post('/addDate',isAdmin, (req: Request, res: Response) => {
+        if(req.isAuthenticated()){
         const date = req.body.date;
         let guestnum = req.body.guestnum;
         try{
@@ -186,15 +187,22 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         }).catch(error => {
             res.status(500).send(error);
         })
+        }else{
+            res.status(500).send('User is not logged in');
+        }
     });
 
-    router.post('/genDates', (req: Request, res: Response) => {
+    router.post('/genDates',isAdmin, (req: Request, res: Response) => {
+        if(req.isAuthenticated()){
         const rdate = new Rdate({date: req.body.date});
         rdate.save().then(data => {
             res.status(200).send(data);
         }).catch(error => {
             res.status(500).send(error);
         })
+        }else{
+            res.status(500).send('User is not logged in');
+        }
     });
 
     router.post('/reserveTable', (req: Request, res: Response) => {
@@ -256,7 +264,8 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         }
     });
 
-    router.post('/addPref', (req: Request, res: Response) => {
+    router.post('/addPref',isAdmin, (req: Request, res: Response) => {
+        if(req.isAuthenticated()){
         const spec_request = req.body.spec_request;
         
         const pref = new Pref({spec_request});
@@ -265,9 +274,12 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         }).catch(error => {
             res.status(500).send(error);
         })
+        }else{
+            res.status(500).send('User is not logged in');
+        }
     });
 
-    router.get('/getAllPrefs', (req: Request, res: Response) => {
+    router.get('/getAllPrefs',isAdmin, (req: Request, res: Response) => {
         if(req.isAuthenticated()){
             const query = Pref.find();
             query.then(data => {

@@ -12,11 +12,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { DialogModule } from '@angular/cdk/dialog';
 import { UpdateComponent } from '../shared/components/update/update.component';
+import { NavbarAdminComponent } from "../shared/components/navbar-admin/navbar-admin.component";
 
 @Component({
   selector: 'app-date-management',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatSnackBarModule,DialogModule],
+  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatIconModule, MatSnackBarModule, DialogModule, NavbarAdminComponent],
   templateUrl: './date-management.component.html',
   styleUrl: './date-management.component.scss'
 })
@@ -116,7 +117,8 @@ export class DateManagementComponent implements OnInit{
     const dialogRef = this.updateDialog.open(UpdateComponent);
     dialogRef.afterClosed().subscribe({
       next: (data) => {
-        if(data){
+        console.log(data);
+        if(data!==true){
             this.rdateService.updateDate(id,data).subscribe({
             next: (data) => {
               console.log(data);

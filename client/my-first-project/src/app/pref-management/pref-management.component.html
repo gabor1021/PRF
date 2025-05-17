@@ -1,17 +1,4 @@
-<mat-toolbar>
-    <span>Restaurant name</span>
-    <span class="fill-space"></span>
-    <span>
-        <table class="toolbar-table">
-            <tr>
-                <td class="toolbar-td"><a href="profile">Profile</a></td>
-                <td class="toolbar-td"><a href="reservation">Reservation</a></td>
-                <td class="toolbar-td"><a href="history">History</a></td>
-            </tr>
-        </table>
-    </span>
-</mat-toolbar>
-
+<app-navbar-admin/>
 <div class="login-container">
     <form class="login-form" [formGroup]="managementForm" (ngSubmit)="onSubmit()">
         <input formControlName="spec_request" type="text" placeholder="Service" required />
@@ -23,12 +10,12 @@
 <div class="table-container" *ngIf="prefs && prefs.length; else unavailableTemplate">
     <table mat-table [dataSource]="prefs">
         <ng-container matColumnDef="spec_request">
-            <th mat-header-cell *matHeaderCellDef>Service</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Service</th>
             <th mat-cell *matCellDef="let element">{{element.spec_request}}</th>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-            <th mat-header-cell *matHeaderCellDef></th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef></th>
             <th mat-cell *matCellDef="let element"><mat-icon fontIcon="delete" (click)="deletePref(element._id)"></mat-icon></th>
         </ng-container>
 
@@ -39,7 +26,7 @@
     </table>
 </div>
 <ng-template #unavailableTemplate>
-    <p>No extra services available.</p>
+    <p class="p-white">No extra services available.</p>
 </ng-template>
 
 <div class="buttons">

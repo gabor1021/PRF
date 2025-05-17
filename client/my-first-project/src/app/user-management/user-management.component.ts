@@ -11,11 +11,12 @@ import { DeleteComponent } from '../shared/components/delete/delete.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { DialogModule } from '@angular/cdk/dialog';
+import { NavbarAdminComponent } from "../shared/components/navbar-admin/navbar-admin.component";
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatSnackBarModule,DialogModule],
+  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatIconModule, MatSnackBarModule, DialogModule, NavbarAdminComponent],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss'
 })

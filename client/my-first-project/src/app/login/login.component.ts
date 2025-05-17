@@ -3,11 +3,17 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { TitleComponent } from "../shared/components/title/title.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule, MatIconModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatInputModule, TitleComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

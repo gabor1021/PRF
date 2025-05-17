@@ -1,40 +1,11 @@
 table {
     width: 100%;
     margin-top: 20px;
+    background-color: #1E1E1E;
 }
 
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-th {
-    background-color: #ffffff;
-    color: #3d3d3d;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-.table-container {
-    margin: 20px;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(237, 100, 100);
-    width: 80%;
+.p-white{
     color: white;
-    padding: 10px;
 }
 
 .login-container {
@@ -59,7 +30,4 @@ button {
     border: 1px solid #ddd;
     border-radius: 5px;
     outline: none;
-}
-mat-icon:hover{
-    color: #8d8d8d;
 }

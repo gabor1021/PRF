@@ -12,11 +12,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { DialogModule } from '@angular/cdk/dialog';
 import { UpdateResComponent } from '../shared/components/update-res/update-res.component';
+import { NavbarAdminComponent } from "../shared/components/navbar-admin/navbar-admin.component";
 
 @Component({
   selector: 'app-res-management',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatSnackBarModule,DialogModule],
+  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatIconModule, MatSnackBarModule, DialogModule, NavbarAdminComponent],
   templateUrl: './res-management.component.html',
   styleUrl: './res-management.component.scss'
 })
@@ -79,7 +80,6 @@ export class ResManagementComponent implements OnInit{
       dialogRef.afterClosed().subscribe({
         next: (data) => {
           if(data){
-              console.log(data)
               this.gdateService.updateDate(id,data.date,data.pref).subscribe({
               next: (data) => {
                 console.log(data);

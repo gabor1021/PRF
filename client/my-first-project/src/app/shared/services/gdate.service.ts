@@ -22,11 +22,12 @@ export class GdateService {
   }
 
   
-  updateDate(id: string, date: string, pref: string){
+  updateDate(id: string, date: string | undefined, pref: string | undefined){
     const body = new URLSearchParams();
     body.set('id', id);
-    body.set('date', date);
-    body.set('pref', pref);
+    if(date)body.set('date', date);
+    if(pref)body.set('pref', pref);
+    else body.set('pref','');
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });

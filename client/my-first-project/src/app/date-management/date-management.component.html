@@ -1,3 +1,4 @@
+<app-navbar-admin/>
 <div class="login-container">
     <form class="login-form" [formGroup]="managementForm" (ngSubmit)="onSubmit()">
         <input formControlName="date" type="text" placeholder="Date" required />
@@ -14,22 +15,22 @@
 <div class="table-container" *ngIf="dates && dates.length; else unavailableTemplate">
     <table mat-table [dataSource]="dates">
         <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Date</th>
             <th mat-cell *matCellDef="let element">{{element.date}}</th>
         </ng-container>
         
         <ng-container matColumnDef="guestnum">
-            <th mat-header-cell *matHeaderCellDef>Available</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Available</th>
             <th mat-cell *matCellDef="let element">{{element.guestnum}}</th>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-            <th mat-header-cell *matHeaderCellDef>Delete</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Delete</th>
             <th mat-cell *matCellDef="let element"><mat-icon fontIcon="delete" (click)="deleteDate(element._id)"></mat-icon></th>
         </ng-container>
 
         <ng-container matColumnDef="edit">
-            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Edit</th>
             <th mat-cell *matCellDef="let element"><mat-icon fontIcon="edit" (click)="changeGuestnum(element._id)"></mat-icon></th>
         </ng-container>
 
@@ -38,7 +39,7 @@
     </table>
 </div>
 <ng-template #unavailableTemplate>
-    <p>No users available.</p>
+    <p class="p-white">No users available.</p>
 </ng-template>
 
 <div class="buttons">

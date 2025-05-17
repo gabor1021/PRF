@@ -12,11 +12,12 @@ import { PrefService } from '../shared/services/pref.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from '../shared/components/delete/delete.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { NavbarAdminComponent } from "../shared/components/navbar-admin/navbar-admin.component";
 
 @Component({
   selector: 'app-pref-management',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatSnackBarModule,DialogModule,MatToolbarModule],
+  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatIconModule, MatSnackBarModule, DialogModule, MatToolbarModule, NavbarAdminComponent],
   templateUrl: './pref-management.component.html',
   styleUrl: './pref-management.component.scss'
 })

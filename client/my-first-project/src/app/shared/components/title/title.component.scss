@@ -1,0 +1,22 @@
+h1{
+    font-size: xx-large;
+    color: white;
+}
+.title{
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    display: flex;
+    width: fit-content;
+}
+mat-icon{
+    color: white;
+    cursor: default;
+    transform: scale(2);
+}
+.left-icon{
+    margin-right: 50px;
+}
+.right-icon{
+    margin-left: 50px;
+}

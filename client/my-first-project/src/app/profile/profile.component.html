@@ -1,16 +1,5 @@
-<mat-toolbar>
-    <span>Restaurant name</span>
-    <span class="fill-space"></span>
-    <span>
-        <table class="toolbar-table">
-            <tr>
-                <td class="toolbar-td"><a href="profile">Profile</a></td>
-                <td class="toolbar-td"><a href="reservation">Reservation</a></td>
-                <td class="toolbar-td"><a href="history">History</a></td>
-            </tr>
-        </table>
-    </span>
-</mat-toolbar>
+<app-navbar/>
+<!--
 <div class="login-container">
     <form class="login-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <input formControlName="email" type="email" placeholder="New email" [ngClass]="{'invalid-input': profileForm.get('email')?.errors}" />
@@ -37,4 +26,54 @@
             <button type="reset" (click)="logout()">Logout</button>
         </div>
     </form>
+</div>
+-->
+
+<div class="login-container">
+  <form class="login-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill" class="full-width" >
+      <mat-label>New email</mat-label>
+      <input matInput formControlName="email" type="email" />
+      <mat-error *ngIf="profileForm.get('email')?.invalid && (profileForm.get('email')?.dirty || profileForm.get('email')?.touched)">
+        <span *ngIf="profileForm.get('email')?.errors?.['email']">Please enter a valid email.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>New password</mat-label>
+      <input matInput formControlName="password" type="password" />
+      <mat-error *ngIf="profileForm.get('password')?.invalid && (profileForm.get('password')?.dirty || profileForm.get('password')?.touched)">
+        <span *ngIf="profileForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <ng-container *ngIf="profileForm.get('password')?.value">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Confirm new password</mat-label>
+        <input matInput formControlName="confirmPassword" type="password" />
+        <mat-error *ngIf="profileForm.get('confirmPassword')?.invalid && (profileForm.get('confirmPassword')?.dirty || profileForm.get('confirmPassword')?.touched)">
+          <span *ngIf="profileForm.get('confirmPassword')?.errors?.['mustMatch']">Passwords must match.</span>
+        </mat-error>
+      </mat-form-field>
+    </ng-container>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>New username</mat-label>
+      <input matInput formControlName="name" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>New phone number</mat-label>
+      <input matInput formControlName="phone" type="text" />
+    </mat-form-field>
+
+    <div class="buttons">
+      <button mat-flat-button color="primary" type="submit" class="full-width">Update</button>
+    </div>
+    <div class="buttons">
+      <button mat-flat-button color="warn" type="reset" class="full-width" (click)="logout()">Logout</button>
+    </div>
+
+  </form>
 </div>

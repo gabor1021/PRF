@@ -1,3 +1,4 @@
+<app-navbar-admin/>
 <div class="table-container" *ngIf="dates && dates.length; else unavailableTemplate">
     <table mat-table [dataSource]="dates">
         <ng-container matColumnDef="date">
@@ -30,7 +31,7 @@
     </table>
 </div>
 <ng-template #unavailableTemplate>
-    <p>Reservation list empty.</p>
+    <p class="p-white">Reservation list empty.</p>
 </ng-template>
 
 <div class="buttons">

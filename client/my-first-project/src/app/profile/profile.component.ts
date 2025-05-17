@@ -5,13 +5,16 @@ import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { NavbarComponent } from "../shared/components/navbar/navbar.component";
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 // FormsModule, ReactiveFormsModule
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatToolbarModule],
+  imports: [ReactiveFormsModule, CommonModule, MatToolbarModule, NavbarComponent,MatInputModule,MatFormFieldModule,MatButtonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
@@ -65,7 +68,6 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      console.log('Form data:', this.profileForm.value);
       this.userService.update(this.profileForm.value).subscribe({
         next: (data) => {
           console.log(data);

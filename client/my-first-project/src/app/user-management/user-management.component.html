@@ -1,22 +1,23 @@
+<app-navbar-admin/>
 <div class="table-container" *ngIf="users && users.length; else noUsersTemplate">
     <table mat-table [dataSource]="users">
         <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Email</th>
             <th mat-cell *matCellDef="let element">{{element.email}}</th>
         </ng-container>
         
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Username</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Username</th>
             <th mat-cell *matCellDef="let element">{{element.name}}</th>
         </ng-container>
 
         <ng-container matColumnDef="phone">
-            <th mat-header-cell *matHeaderCellDef>Phone number</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Phone number</th>
             <th mat-cell *matCellDef="let element">{{element.phone}}</th>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-            <th mat-header-cell *matHeaderCellDef></th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef></th>
             <th mat-cell *matCellDef="let element"><mat-icon fontIcon="delete" (click)="deleteUser(element._id)"></mat-icon></th>
         </ng-container>
 
@@ -25,7 +26,7 @@
     </table>
 </div>
 <ng-template #noUsersTemplate>
-    <p>No users available.</p>
+    <p class="p-white">No users available.</p>
 </ng-template>
 
 <div class="buttons">
