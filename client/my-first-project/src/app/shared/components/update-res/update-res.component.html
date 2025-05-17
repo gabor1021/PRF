@@ -9,7 +9,6 @@
             <mat-option *ngFor="let pref of prefs" [value]="pref.spec_request"> {{pref.spec_request}} </mat-option>
         </mat-select>
     </mat-form-field>
-    <p>{{selectedPref}}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-flat-button [mat-dialog-close]="{date: selectedDate,pref: selectedPref}">Yes</button>

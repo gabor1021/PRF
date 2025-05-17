@@ -1,23 +1,18 @@
 <div class="table-container" *ngIf="dates && dates.length; else unavailableTemplate">
     <table mat-table [dataSource]="dates">
         <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Date</th>
             <th mat-cell *matCellDef="let element">{{element.date}}</th>
         </ng-container>
         
         <ng-container matColumnDef="guestnum">
-            <th mat-header-cell *matHeaderCellDef>Available</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Available</th>
             <th mat-cell *matCellDef="let element">{{element.guestnum}}</th>
         </ng-container>
 
-        <ng-container matColumnDef="preference">
-            <th mat-header-cell *matHeaderCellDef>Preference</th>
-            <th mat-cell *matCellDef>{{selectedVal}}</th>
-        </ng-container>
-
         <ng-container matColumnDef="reserve">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <th mat-cell *matCellDef="let element"><mat-icon fontIcon="add_box" (click)="newRes(element._id,selectedVal)"></mat-icon></th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef></th>
+            <th mat-cell *matCellDef="let element"><mat-icon fontIcon="add_box" (click)="newRes(element._id)"></mat-icon></th>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="cols"></tr>
@@ -27,13 +22,6 @@
 <ng-template #unavailableTemplate>
     <p>Service unavailable.</p>
 </ng-template>
-
-<mat-form-field appearance="fill">
-  <mat-label>Choose preferences</mat-label>
-  <mat-select multiple [(value)]="selectedVal">
-    <mat-option *ngFor="let pref of prefs" [value]="pref.spec_request"> {{pref.spec_request}} </mat-option> 
-  </mat-select>
-</mat-form-field>
 
 <div class="buttons">
     <button type="reset" (click)="logout()">Logout</button>

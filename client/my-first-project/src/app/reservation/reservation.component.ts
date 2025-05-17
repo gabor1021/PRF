@@ -11,15 +11,13 @@ import { DialogComponent } from '../shared/components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { Pref } from '../shared/model/Pref';
 import { PrefService } from '../shared/services/pref.service';
-import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-reservation',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatButtonModule,MatSnackBarModule,MatFormFieldModule,MatSelectModule],
+  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatIconModule,MatButtonModule,MatSnackBarModule],
   templateUrl: './reservation.component.html',
   styleUrl: './reservation.component.scss'
 })
@@ -28,8 +26,7 @@ export class ReservationComponent implements OnInit{
   dates!: Rdate[];
   prefs!: Pref[];
   managementForm!: FormGroup;
-  selectedVal!: '';
-  cols = ['date', 'guestnum', 'preference', 'reserve'];
+  cols = ['date', 'guestnum', 'reserve'];
   constructor(
     private rdateService: RdateService,
     private authService: AuthService,
@@ -68,12 +65,13 @@ export class ReservationComponent implements OnInit{
     })
   }
 
-  newRes(id: string, pref: string){
+  newRes(id: string){
     const dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe({
       next: (data) => {
         if(data){
-          this.rdateService.reserveTable(id,pref).subscribe({
+          console.log(data)
+          this.rdateService.reserveTable(id,data).subscribe({
           next: (data) => {
             console.log(data);
             this.dates = [...this.dates];

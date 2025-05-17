@@ -4,10 +4,45 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    background-color: #121212;
 
+}
 app-root {
     width: 100%;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+th {
+    text-align: left;
+    padding: 8px;
+    background-color: #2A2A2A;
+    color: #bbbbbb;
+}
+.th-header{
+    color: #fff;
+}
+
+.table-container {
+    margin: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(237, 100, 100);
+    width: 80%;
+    color: white;
+    padding: 10px;
+}
+mat-icon:hover{
+    color: #8d8d8d;
+    cursor: pointer;
+}
