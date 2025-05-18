@@ -55,17 +55,6 @@ export class ReservationComponent implements OnInit{
     });
   }
 
-  logout() {
-    this.authService.logout().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.router.navigateByUrl('/login');
-      }, error: (err) => {
-        console.log(err);
-      }
-    })
-  }
-
   newRes(id: string){
     const dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe({

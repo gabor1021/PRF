@@ -34,15 +34,4 @@ export class HistoryComponent implements OnInit{
       }
     });
   }
-
-  logout() {
-    this.authService.logout().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.router.navigateByUrl('/login');
-      }, error: (err) => {
-        console.log(err);
-      }
-    })
-  }
 }

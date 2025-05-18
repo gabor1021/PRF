@@ -37,3 +37,26 @@ button{
     background-color: #1e1e1e;
     color: #ffffff;
 }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #1e1e1e;
+  min-width: 150px;
+  z-index: 9999;
+}
+
+.dropdown-content a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content .dropdown-option:hover {color: #bbbbbb;}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown:hover .dropbtn{color: #a0a0a0;}
+.logout{
+    cursor: pointer;
+}

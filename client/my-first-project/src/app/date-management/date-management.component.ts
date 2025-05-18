@@ -66,17 +66,6 @@ export class DateManagementComponent implements OnInit{
     }
   }
 
-  logout() {
-    this.authService.logout().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.router.navigateByUrl('/login');
-      }, error: (err) => {
-        console.log(err);
-      }
-    })
-  }
-
   genDates(){
     for(let hour = 16; hour < 20; hour++){
       const current_date = new Date();

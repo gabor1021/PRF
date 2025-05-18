@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,4 +16,19 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) { }
+  logout() {
+    this.authService.logout().subscribe({
+      next: (data) => {
+        console.log(data);
+        this.router.navigateByUrl('/login');
+      }, error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+}
