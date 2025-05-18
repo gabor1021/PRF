@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   standalone: true,
   imports: [MatDialogModule,MatButtonModule,MatInputModule, FormsModule,CommonModule,MatSelectModule,MatFormFieldModule],
   templateUrl: './update-res.component.html',
-  styleUrl: './update-res.component.scss'
+  styleUrl: './update-res.component.scss',
 })
 export class UpdateResComponent {
   selectedPref!: "";

@@ -13,11 +13,12 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { DialogModule } from '@angular/cdk/dialog';
 import { UpdateComponent } from '../shared/components/update/update.component';
 import { NavbarAdminComponent } from "../shared/components/navbar-admin/navbar-admin.component";
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-date-management',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatIconModule, MatSnackBarModule, DialogModule, NavbarAdminComponent],
+  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatIconModule, MatSnackBarModule, DialogModule, NavbarAdminComponent, MatFormFieldModule],
   templateUrl: './date-management.component.html',
   styleUrl: './date-management.component.scss'
 })

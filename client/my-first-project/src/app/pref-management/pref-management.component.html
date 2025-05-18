@@ -1,21 +1,21 @@
 <app-navbar-admin/>
 <div class="login-container">
     <form class="login-form" [formGroup]="managementForm" (ngSubmit)="onSubmit()">
-        <input formControlName="spec_request" type="text" placeholder="Service" required />
-        <div class="buttons">
-            <button type="submit">Add</button>
+        <div class="input-div">
+            <input formControlName="spec_request" type="text" placeholder="Service name" required />
+            <button class="buttons" type="submit">Add</button>
         </div>
     </form>
 </div>
 <div class="table-container" *ngIf="prefs && prefs.length; else unavailableTemplate">
     <table mat-table [dataSource]="prefs">
         <ng-container matColumnDef="spec_request">
-            <th class="th-header" mat-header-cell *matHeaderCellDef>Service</th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Service name</th>
             <th mat-cell *matCellDef="let element">{{element.spec_request}}</th>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-            <th class="th-header" mat-header-cell *matHeaderCellDef></th>
+            <th class="th-header" mat-header-cell *matHeaderCellDef>Delete</th>
             <th mat-cell *matCellDef="let element"><mat-icon fontIcon="delete" (click)="deletePref(element._id)"></mat-icon></th>
         </ng-container>
 

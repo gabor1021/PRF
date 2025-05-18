@@ -43,7 +43,7 @@ button{
   position: absolute;
   background-color: #1e1e1e;
   min-width: 150px;
-  z-index: 1;
+  z-index: 9999;
 }
 
 .dropdown-content a {

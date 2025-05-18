@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Rdate } from '../shared/model/Rdate';
 import { RdateService } from '../shared/services/rdate.service';
 import { AuthService } from '../shared/services/auth.service';

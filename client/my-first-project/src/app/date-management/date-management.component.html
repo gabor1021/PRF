@@ -1,13 +1,13 @@
 <app-navbar-admin/>
 <div class="login-container">
     <form class="login-form" [formGroup]="managementForm" (ngSubmit)="onSubmit()">
-        <input formControlName="date" type="text" placeholder="Date" required />
-        <input formControlName="guestnum" type="text" placeholder="Number of guests" />
-        <div class="buttons">
-            <button type="submit">Add</button>
+        <div class="input-div">
+            <input class="input-field" formControlName="date" type="text" placeholder="Date" required />
+            <input class="input-field" formControlName="guestnum" type="text" placeholder="Number of guests" />
         </div>
         <div class="buttons">
-            <button type="" (click)="genDates()">Generate Automatically</button>
+            <button class="btn-field" type="submit">Add</button>
+            <button class="btn-field" (click)="genDates()">Generate Automatically</button>
         </div>
     </form>
 </div>

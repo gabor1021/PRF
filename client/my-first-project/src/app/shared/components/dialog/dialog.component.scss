@@ -7,8 +7,7 @@ button{
     display: block;
     margin: auto;
     width: 20%;
-    max-width: 50px;
-    background-color: aqua;
+    max-width: fit-content;
 }
 mat-label{
     color: #2a2a2a;
